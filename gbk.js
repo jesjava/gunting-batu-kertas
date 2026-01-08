@@ -1,14 +1,12 @@
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCkmGeWp3WLMv9nj3aNBhWg0LkdDYapF4Q",
-  authDomain: "nulief.firebaseapp.com",
-  databaseURL:
-    "https://nulief-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "nulief",
-  storageBucket: "nulief.firebasestorage.app",
-  messagingSenderId: "891935401723",
-  appId: "1:891935401723:web:1ea36c59624502a093325e",
-  measurementId: "G-N1G8FV0C47",
+  apiKey: "AIzaSyBIMPwUqPpVbAX_q5sgKzT-HR7KQC1Mh-A",
+  authDomain: "aziizdobetter.firebaseapp.com",
+  databaseURL: "https://aziizdobetter-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "aziizdobetter",
+  storageBucket: "aziizdobetter.firebasestorage.app",
+  messagingSenderId: "1074885019014",
+  appId: "1:1074885019014:web:a9469be40aee7fc76b9807"
 };
 
 // Initialize Firebase
@@ -521,3 +519,4 @@ function updateScoreElement(roomData) {
 
   scoreTextElement.innerText = `${roomMakerName} - Win: ${roomMakerWin} | ${invitedPlayerName} - Win: ${invitedPlayerWin}`;
 }
+
