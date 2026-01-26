@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- iOS support -->
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Add to home screen prompt for older browsers -->
+    <meta name="mobile-web-app-capable" content="yes" />
+
     <meta name="description" content="Mainkan Gunting Batu Kertas!" />
     <meta property="og:title" content="Gunting Batu Kertas" />
     <meta property="og:description" content="Mainkan Gunting Batu Kertas!" />
@@ -121,6 +135,19 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
     <!-- end of import -->
     <script src="gbk.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("ServiceWorker registered:", registration);
+            })
+            .catch((error) => {
+              console.log("ServiceWorker registration failed:", error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
-
