@@ -1,46 +1,66 @@
-const CACHE_NAME = 'my-pwa-cache-v1';
+const CACHE_NAME = 'gbk-cache-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/icon-192x192.png'
+  './',
+  './index.html',
+  './gbk.css',
+  './gbk.js',
+  './icons/kertas.png',
 ];
 
-// Install event
+// Install Service Worker
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache');
+        console.log('Caching files for offline use');
         return cache.addAll(urlsToCache);
       })
   );
 });
 
-// Fetch event
+// Fetch from cache first, then network
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Cache hit - return response
+        // Return cached version
         if (response) {
           return response;
         }
-        return fetch(event.request);
-      }
-    )
+        // Fetch from network
+        return fetch(event.request)
+          .then(response => {
+            // Don't cache if not a valid response
+            if(!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+            
+            // Clone the response
+            const responseToCache = response.clone();
+            
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                cache.put(event.request, responseToCache);
+              });
+              
+            return response;
+          });
+      })
+      .catch(() => {
+        // If both cache and network fail, show custom offline page
+        return caches.match('./index.html');
+      })
   );
 });
 
-// Activate event
+// Clean up old caches
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
+          if (cacheName !== CACHE_NAME) {
+            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })

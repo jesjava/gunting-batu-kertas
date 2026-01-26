@@ -2,18 +2,18 @@
     "name": "Gunting Batu Kertas",
     "short_name": "GBK",
     "description": "A web-based multiplayer Rock, Paper, Scissors game application with Firebase Realtime Database integration for real-time game state synchronization, supports room creation and merging with unique IDs, and implements turn-based gameplay with an integrated scoring system for both players.",
-    "start_url": "/",
+    "start_url": "/gunting-batu-kertas/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
     "icons": [
       {
-        "src": "icons/kertas.png",
+        "src": "https://aziizdobetter.github.io/gunting-batu-kertas/icons/kertas.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "icons/kertas.png",
+        "src": "https://aziizdobetter.github.io/gunting-batu-kertas/icons/kertas.png",
         "sizes": "512x512",
         "type": "image/png"
       }
